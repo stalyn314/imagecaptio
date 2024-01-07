@@ -663,6 +663,58 @@ generate_caption()
 generate_caption()
 generate_caption()
 
+
+if __name__ == '__main__':
+
+    download_data()
+    vocab, encoder, decoder = load_model()
+    
+    pytorch_image = pypng()
+    st.image(pytorch_image, width = 500)
+    
+    st.title("The Image Captioning Bot")
+    st.text("")
+    st.text("")
+    st.success("Welcome! Please upload an image!"
+    )   
+    
+    args = { 'sunset' : 'imgs/sunset.jpeg' }
+    
+    img_upload  = st.file_uploader(label= 'Upload Image', type = ['png', 'jpg', 'jpeg','webp'])
+    
+    img_open = args['sunset'] if img_upload is None else img_upload
+    
+    image = load_output_image(img_open)
+    
+    st.sidebar.markdown('''
+    # Pro Tips
+    If you are getting funny/random predictions \n
+    1. Prefer using the app from PC :computer:
+    2. It works best with interaction of people with objects.
+    3. CaptionBot likes dogs :dog: , men, women and kids. Sorry catlovers.
+    4. Profile pictures(Whatsapp) are \n good candidates!
+    5. Very few animals work.
+    
+    **Try this** :wink:
+
+    If greater than/equal to two captions say
+    you are woman, then you are more
+    feminine looking and vice-versa.
+    Upload a close-up to see! 
+    
+    ''')
+    
+    st.sidebar.markdown('''Check the model details [here](https://github.com/sankalp1999/Image_Captioning)
+    \n Liked it? Give a :star:  on GitHub ''')
+    
+    st.image(image,use_column_width=True,caption="Your image")
+
+    # img_bytes earlier
+    if st.button('Generate captions!'):
+        caption_model(image)
+        st.success("Click again to retry or try a different image by uploading")
+        st.balloons()
+
 """
 ## End Notes
 
