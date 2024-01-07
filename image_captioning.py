@@ -26,6 +26,25 @@ from keras.applications import efficientnet
 from keras.layers import TextVectorization
 
 keras.utils.set_random_seed(111)
+import pickle
+from model import BahdanauAttention, EncoderCNN, Decoder
+from vocab import Vocab_Builder
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torchvision.transforms as transforms
+import torch.nn.functional as F
+import torchvision.models as models
+from PIL import Image, ImageOps
+import io
+import time
+import streamlit as st
+import requests
+import os
+from io import BytesIO
+import wget
+
+device = 'cpu'
 
 """
 ## Download the dataset
